@@ -1,10 +1,12 @@
-import { run } from "@autoclickpro/run";
-import { baseReq } from "./src/grpcx/req";
-import { makeGrpcClient } from "./src/grpcx/client";
-import { createPfGrpcClient } from "./src/grpc";
 import dayjs from "dayjs";
+
+import { run } from "@autoclickpro/run";
+
+import { createPfGrpcClient } from "./src/grpc";
+
 run({
   start() {
+    const res: number[] = [];
     const client = createPfGrpcClient(
       "https://solana-yellowstone-grpc.publicnode.com:443",
       ""
@@ -14,9 +16,11 @@ run({
     client.onToken({
       onCreate: async ({ metadata, sig, amm, ext }) => {
         const diff = dayjs().diff(dayjs(metadata.createdAt));
+        res.push(diff);
         console.log({
           mint: metadata.mint,
           diff,
+          avg: res.reduce((a, b) => a + b, 0) / res.length,
         });
       },
     });
