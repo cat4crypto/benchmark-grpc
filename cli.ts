@@ -20,8 +20,8 @@ run({
         console.log({
           mint: metadata.mint,
           diff,
-          avg1: res1.reduce((a, b) => a + b, 0) / res1.length,
-          avg2: res2.reduce((a, b) => a + b, 0) / res2.length,
+          publicNode: res1.reduce((a, b) => a + b, 0) / res1.length,
+          cd: res2.reduce((a, b) => a + b, 0) / res2.length,
         });
       },
     });
@@ -37,8 +37,8 @@ run({
         console.log({
           mint: metadata.mint,
           diff,
-          avg2: res2.reduce((a, b) => a + b, 0) / res2.length,
-          avg1: res1.reduce((a, b) => a + b, 0) / res1.length,
+          publicNode: res1.reduce((a, b) => a + b, 0) / res1.length,
+          cd: res2.reduce((a, b) => a + b, 0) / res2.length,
         });
       },
     });
